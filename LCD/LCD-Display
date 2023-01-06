@@ -1,0 +1,21 @@
+#include <LiquidCrystal.h>
+
+const int blacklightPin = 9;  // Pin that the blacklight is connected to
+const int lcdRows = 2;        // Number of rows on the LCD
+const int lcdCols = 16;       // Number of columns on the LCD
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);  // Initialize the LCD
+
+void setup() {
+  lcd.begin(lcdCols, lcdRows);  // Set up the LCD
+  pinMode(blacklightPin, OUTPUT);  // Set the blacklight pin as an output
+}
+
+void loop() {
+  static const char message[] = "Hello, world!";  // The message to display
+  static const int blacklightValue = 128;  // The intensity of the blacklight
+
+  analogWrite(blacklightPin, blacklightValue);  // Set the blacklight intensity
+  lcd.print(message);  // Display the message
+  delay(1000);  // Wait 1 second before repeating
+}
